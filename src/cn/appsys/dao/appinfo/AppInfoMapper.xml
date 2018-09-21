@@ -2,8 +2,11 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.appsys.dao.addinfo.AddInfoMapper">
-  <select id="getAddInfoCount" resultType="_int" parameterType="QueryAddInfoVO">
+<mapper namespace="cn.appsys.dao.appinfo.AppInfoMapper">
+	
+	<!-- int getAppInfoCount(); -->
+	<!-- int getAppInfoCount(QueryAppInfoVO queryAppInfoVO); -->
+	<select id="getAppInfoCount" resultType="_int" parameterType="QueryAppInfoVO">
 		select count(1)
 			from app_info
 				<where>
@@ -31,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- List<AppInfo> getAppInfoList(@Param("startIndex")int startIndex,
 								 @Param("pageSize")int pageSize); -->
 	<!-- List<AppInfo> getAppInfoList(QueryAppInfoVO queryAppInfoVO); -->							 
-	<select id="getAddInfoList" resultType="AddInfo" parameterType="QueryAddInfoVO">
+	<select id="getAppInfoList" resultType="AppInfo" parameterType="QueryAppInfoVO">
 		select 
 			i.id,i.softwareName,i.APKName,i.supportROM,i.interfaceLanguage,i.softwareSize,
 			i.updateDate,i.devId,i.appInfo,i.onSaleDate,i.offSaleDate,i.downloads,i.createdBy,i.creationDate,
@@ -64,6 +67,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						</if>
 					</where>
 					order by i.creationDate DESC,i.modifyDate DESC
-	</select>							 
+						limit #{startIndex},#{pageSize}
+	</select>	
+	
+	<update id="updateVersionId">
+		update app_info set versionId=#{versionId} where id =
+		#{id}
+	</update>						 
 	
 </mapper>
