@@ -1,8 +1,9 @@
 /AdPromotion.java
 /AppCategory.java
 /AppInfo.java
-/AppVersion.java
 /BackendUser.java
 /DataDictionary.java
 /DevUser.java
 /QueryAppInfoVO.java
+/QueryAddInfoVO.java
+/addInfo.java
